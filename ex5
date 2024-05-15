@@ -1,0 +1,13 @@
+-- This was a project trying correlate international students length of stay to depression. TODEP, TOSC, and TOAS are testing scores that would estimate someones mental state. So this query is selecting students who are international and grouping them by their 
+-- length of stay in descending order. For each student we are counting them based on their stay length and seeing what the average score is across the 3 tests mentioned. From there we can start to see if there is a correlation between length of stay and depression.
+-- Worth noting we are also renaming the columns so that it accounts for the fact that the numbers being shown are the average of the students who stayed that length.
+SELECT 
+  stay, 
+  COUNT(inter_dom) AS count_int, 
+  ROUND(AVG(todep),2) AS average_phq, 
+  ROUND(AVG(tosc),2) AS average_scs, 
+  ROUND(AVG(toas),2) AS average_as
+FROM students
+WHERE inter_dom = 'Inter'
+GROUP BY stay
+ORDER BY stay DESC;
