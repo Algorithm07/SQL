@@ -1,0 +1,11 @@
+-- Showing films released after 1990 that have a budget greater than $60,000,000. We are then ordering them by the gross amount earned in a descending fashion and limiting that to only the highest grossing film.
+SELECT 
+  release_year, 
+  AVG(budget) AS avg_budget, 
+  AVG(gross) AS avg_gross
+FROM films
+WHERE release_year > 1990
+GROUP BY release_year
+HAVING AVG(budget) > 60000000
+ORDER BY AVG(gross) DESC
+LIMIT 1;
