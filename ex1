@@ -1,0 +1,14 @@
+-- Joining together the countries, languages and currencies tables using the 'code' column they have in common. Showing the results from a specific region. 
+
+SELECT 
+	c1.name AS country, 
+  region, 
+  l.name AS language,
+	basic_unit, 
+  frac_unit
+FROM countries as c1 
+FULL JOIN languages as l
+USING(code)
+FULL JOIN currencies as c2
+USING(code)
+WHERE region LIKE 'M%esia';
